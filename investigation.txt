@@ -1,0 +1,29 @@
+#Investigation
+
+1)For different puzzle size:
+8x8
+            BS-h1    BS-h2    BS-h3    FC-h1    FC-h2    FC-h3     Calculation: 
+run time    14.034   0.114    1.025    1.35     0.145    0.958     518.55%
+node num    1969188  139      350      3809     85       116       49019.13%
+
+10x10
+            BS-h1    BS-h2    BS-h3    FC-h1    FC-h2    FC-h3     Calculation: 
+run time      x      0.458    4.399    14.65    0.533    3.921     9.05%
+node num      x      860      342      21508    414      180       102.35%
+
+12x12
+            BS-h1    BS-h2    BS-h3    FC-h1    FC-h2    FC-h3     Calculation: 
+run time      x      1.108    53.45      x      1.017    26.326    99.53%
+node num      x      1404     9799       x      542      1448      462.96%
+
+14x14
+            BS-h1    BS-h2    BS-h3    FC-h1    FC-h2    FC-h3     Calculation: 
+run time      x      437.848  308.13     x      72.797   192.883   180.78%
+node num      x      673208   21188      x      41848    8742      1272.59%
+
+BS total = (BS-h1)+(BS-h2)+(BS-h3)
+FC total = (FC-h1)+(FC-h2)+(FC-h3)
+Calculation is (BS total - FC total)/FC total
+
+Summary:
+	In general, forward checking (FC) showed better performance than backtrack search (BS). FC visited smaller number of nodes and has shorter running time. Among three heuristics, heuristic 2(most constrained node) has the shortest running time, heuristic 3(most constraining node) has the smallest number of node visited. However, with the 12x12 test example, heuristic 3 visited more nodes than heuristic 2. This is puzzle related. As heuristic 3 only returns the most constraining cell, the cell may have two possible options and the option it tired first was not the correct solution. Overall, heuristic 3 has fewer nodes visited. It has longer running time because its algorithm is more complex and thus require longer time to choose the next move. With the size of the puzzle increased, the average difference in percentage between the two algorithm increased. Therefore, forward checking is especially preferred with large-size puzzle.
